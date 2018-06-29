@@ -19,6 +19,15 @@ export class CourseService {
     this.coursesCol = db.collection('courses');
    }
 
+   getCourse(courseId: string): Observable<Course> {
+    return this.coursesCol.doc<Course>(courseId)
+      .snapshotChanges()
+      .pipe(map(snapshot => ({
+        ...(snapshot.payload.data()),
+        id: snapshot.payload.id,
+      })));
+   }
+
    getCourses(semesterId: string = null): Observable<Course[]> {
     return this.db.collection<Course>('courses', ref => !semesterId ? ref : ref.where('semesterId', '==', semesterId))
     .snapshotChanges()

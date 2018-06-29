@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { CourseService } from '../../../services/course.service';
 import { Course } from '../../../models/course';
 import { ContentService } from '../../../services/content.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-content-form',
@@ -21,6 +22,7 @@ export class ContentFormComponent implements OnInit {
     private storage: AngularFireStorage,
     private cs: CourseService,
     private content: ContentService,
+    private activeModal: NgbActiveModal,
   ) { }
 
   currentFilePercentage: Observable<number>;
@@ -39,6 +41,7 @@ export class ContentFormComponent implements OnInit {
       fileLink: '',
       courseId: '',
       otherLink: '',
+      type: 'other',
     };
   }
 
@@ -85,5 +88,10 @@ export class ContentFormComponent implements OnInit {
     this.currentFile = null;
     this.currentFilePercentage = null;
     this.currentFileUrl = null;
+    this.currentContent.type = 'other';
+  }
+
+  closeModal() {
+    this.activeModal.close();
   }
 }

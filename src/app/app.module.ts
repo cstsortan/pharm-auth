@@ -26,6 +26,9 @@ import { ContentEditorComponent } from './admin/content-editor/content-editor.co
 import { ContentFormComponent } from './admin/content-editor/content-form/content-form.component';
 import { UploadPercentPipe } from './pipes/upload-percent.pipe';
 import { ContentService } from './services/content.service';
+import { ContentListComponent } from './admin/content-editor/content-list/content-list.component';
+import { ContentListItemComponent } from './admin/content-editor/content-list-item/content-list-item.component';
+import { CoursePageComponent } from './course-page/course-page.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { ContentService } from './services/content.service';
     InstructorsPipe,
     ContentEditorComponent,
     ContentFormComponent,
-    UploadPercentPipe
+    UploadPercentPipe,
+    ContentListComponent,
+    ContentListItemComponent,
+    CoursePageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,9 @@ import { ContentService } from './services/content.service';
     CourseService,
     ContentService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ContentFormComponent,
+  ]
 })
 export class AppModule { }

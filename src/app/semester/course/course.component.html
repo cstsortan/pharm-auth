@@ -5,5 +5,7 @@
       <div *ngFor="let instructor of course.instructors|instructors">
         <a target="_blank" [href]="instructor.link">{{instructor.name}}</a>
       </div>
+      <hr>
+      <a class="btn btn-light" routerLink="/course/{{course.id}}">Περισσότερες πληροφορίες</a>
     </div>
   </div>

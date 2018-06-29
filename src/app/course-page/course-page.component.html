@@ -1,0 +1,52 @@
+<button routerLink="/semester/{{ (course$|async)?.semesterId }}" class="btn btn-sm btn-outline-info m-2">πίσω</button>
+<div class="p-3">
+  <div class="row">
+
+    <!-- INSTRUCTORS -->
+    <div class="card col-12">
+      <div class="card-header">
+        <h3>{{(course$|async)?.name}}</h3>
+      </div>
+      <div class="card-body">
+        Διδάσκοντες:
+        <div *ngFor="let instructor of (course$|async)?.instructors | instructors">
+          <a target="_blank" [href]="instructor.link">{{ instructor.name }}</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="p-1 col-12 col-md-6 my-2">
+      <div class="card">
+        <div class="card-header">Σημειώσεις:</div>
+        <div class="card-body">
+          <div *ngFor="let note of lectureNotes$|async">
+            <div class="alert alert-info m-1">
+              <p>{{ note?.description }}</p>
+              <a *ngIf="note.otherLink!==''" href="{{ note.otherLink }}">{{note.name}}(εξωτερικός σύνδεσμος)</a>
+              <a *ngIf="note.fileLink!==''" href="{{ note.fileLink }}">{{note.name}}(αρχείο)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- QUESTIONS -->
+    <div class="p-1 col-12 col-md-6 my-2">
+      <div class="card">
+        <div class="card-header">Θέματα:</div>
+        <div class="card-body">
+          <div *ngFor="let question of questions$|async">
+            <div class="alert alert-info m-1">
+              <p>{{ question?.description }}</p>
+              <a *ngIf="question.otherLink!==''" href="{{ question.otherLink }}">{{question.name}}(εξωτερικός σύνδεσμος)</a>
+              <a *ngIf="question.fileLink!==''" href="{{ question.fileLink }}">{{question.name}}(αρχείο)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

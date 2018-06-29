@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ContentFormComponent } from './content-form/content-form.component';
 
 @Component({
   selector: 'app-content-editor',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentEditorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal,
+  ) { }
 
   ngOnInit() {
   }
+
+  openContentForm() {
+    this.modalService.open(ContentFormComponent);
+  }
+
+
 
 }

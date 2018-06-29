@@ -1,0 +1,5 @@
+<div class="m-1 m-md-2 m-lg-4 row">
+  <div class="col-12 col-md-6 col-lg-4" *ngFor="let c of content$|async">
+    <app-content-list-item [content]="c"></app-content-list-item>
+  </div>
+</div>

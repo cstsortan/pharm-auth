@@ -6,4 +6,5 @@ export interface Content {
     courseId: string;
     timestamp?: number;
     otherLink: string;
+    type: string;
 }
