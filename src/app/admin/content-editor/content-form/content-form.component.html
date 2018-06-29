@@ -1,0 +1,68 @@
+<form (submit)="submit()">
+
+  <!-- NAME -->
+  <div class="form-group">
+    <label for="inputContentName">Add a name</label>
+    <input [(ngModel)]="currentContent.name" type="text" class="form-control" name="inputContentName" id="inputContentName" aria-describedby="inputContentLabel"
+      placeholder="Content Name">
+    <small id="inputContentLabel" class="form-text text-muted">Add a name to this content record for a title</small>
+  </div>
+
+  <!-- COURSE -->
+  <div class="form-group">
+    <div class="form-group">
+      <div class="form-group">
+        <label for="courseSelelection">Course</label>
+        <select [(ngModel)]="currentContent.courseId" class="form-control" name="courseSelelection" id="courseSelelection">
+          <option *ngFor="let c of courses$|async" [value]="c.id">
+            {{c.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILE -->
+  <div class="form-group">
+    <div *ngIf="!isUploaded">
+      <label for="fileContentInput">Add file</label>
+      <input (change)="fileAdded($event)" type="file" class="form-control-file" name="fileContentInput" id="fileContentInput" placeholder="File Content"
+        aria-describedby="fileHelpId">
+      <small id="fileHelpId" class="form-text text-muted">Add a file to this record</small>
+    </div>
+    <p *ngIf="isUploading">
+      <ngb-progressbar showValue="true" type="info" [value]="currentFilePercentage | async | uploadPercent"></ngb-progressbar>
+    </p>
+    <div *ngIf="currentFileUrl | async; let url" class="alert-success alert">
+      <p>Uploaded:</p>
+      <a target="_blank" [href]="url">{{url}}</a>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="form-group">
+    <label for="inputContentDescription">Add description</label>
+    <input [(ngModel)]="currentContent.description" type="text" class="form-control" name="inputContentDescription" id="inputContentDescription" aria-describedby="labelContentDescription"
+      placeholder="Content Description">
+    <small id="labelContentDescription" class="form-text text-muted">Add a description for this record</small>
+  </div>
+
+  <!-- EXTRA_LINK -->
+  <div class="form-group">
+    <label for="inputContentLink">Add link</label>
+    <input [(ngModel)]="currentContent.otherLink" type="text" class="form-control" name="inputContentLink" id="inputContentLink" aria-describedby="inputContentLink"
+      placeholder="Content Link">
+    <small id="inputContentLink" class="form-text text-muted">Help text</small>
+  </div>
+
+  <!-- SUBMIT / RESET -->
+  <button [disabled]="!validate" type="submit" class="btn btn-primary">Submit</button>
+  <button type="reset" (click)="reset()" class="btn btn-danger">Reset</button>
+</form>
+
+<hr>
+<!-- TODO: remove in production -->
+{{currentContent | json}} {{(currentFilePercentage | async)/100 | percent}}
+<div class="d-block">
+  {{ currentFileUrl | async | json }}
+</div>

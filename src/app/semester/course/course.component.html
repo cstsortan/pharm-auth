@@ -1,0 +1,9 @@
+<div class="card mt-3 shadow-sm">
+    <div class="card-header">{{ course.name }}</div>
+    <div class="card-body">
+      <div class="alert alert-info">Διδάσκοντες</div>
+      <div *ngFor="let instructor of course.instructors|instructors">
+        <a target="_blank" [href]="instructor.link">{{instructor.name}}</a>
+      </div>
+    </div>
+  </div>
