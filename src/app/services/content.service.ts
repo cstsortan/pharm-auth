@@ -31,6 +31,7 @@ export class ContentService {
 
   getCourseContent(courseId: string, type: string): Observable<Content[]> {
     return this.db.collection('content', ref => ref
+      .orderBy('name')
       .where('courseId', '==', courseId)
       .where('type', '==', type))
     .snapshotChanges()
