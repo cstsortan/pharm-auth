@@ -28,8 +28,22 @@ export class CourseService {
       })));
    }
 
-   getCourses(semesterId: string = null): Observable<Course[]> {
-    return this.db.collection<Course>('courses', ref => !semesterId ? ref : ref.where('semesterId', '==', semesterId))
+   getCourses(semesterId: string = null, instructorId: string = null): Observable<Course[]> {
+    return this.db.collection<Course>('courses', ref => {
+      if (semesterId === null && instructorId === null) {
+        return ref.orderBy('name');
+      } else if (semesterId !== null && instructorId === null) {
+        return ref.where('semesterId', '==', semesterId);
+      } else if (semesterId === null && instructorId !== null) {
+        return ref.where(`instructors.${instructorId}.id`, '==', instructorId);
+      } else if (semesterId !== null && instructorId !== null) {
+        return ref.where('semesterId', '==', semesterId)
+        .where(`instructors.${instructorId}.id`, '==', instructorId);
+      } else {
+        return ref;
+      }
+      // return!semesterId ? ref.orderBy('name') : ref.where('semesterId', '==', semesterId);
+    })
     .snapshotChanges()
     .pipe(map(snapshots => {
       return snapshots.map(snap => {
@@ -57,9 +71,9 @@ export class CourseService {
     return this.coursesCol.doc(course.id).set(data, {merge: true});
    }
 
-  removeCourseInstructor(instructor: Instructor, course: Course) {
+  removeCourseInstructor(instructorId: string, course: Course) {
     const data = course;
-    data.instructors[instructor.id] = firebase.firestore.FieldValue.delete();
+    data.instructors[instructorId] = firebase.firestore.FieldValue.delete();
     return this.coursesCol.doc(course.id).set(data, {merge: true});
   }
 }

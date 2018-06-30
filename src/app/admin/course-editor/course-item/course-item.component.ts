@@ -34,6 +34,6 @@ export class CourseItemComponent implements OnInit {
   }
 
   removeCourseInstructor(instructor: Instructor) {
-    this.cs.removeCourseInstructor(instructor, this.course);
+    this.cs.removeCourseInstructor(instructor.id, this.course);
   }
 }

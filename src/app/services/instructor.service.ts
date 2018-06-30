@@ -2,14 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Instructor } from '../models/instructor';
-import { map } from 'rxjs/operators';
+import { map, first, take } from 'rxjs/operators';
+import { CourseService } from './course.service';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstructorService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(
+    private db: AngularFirestore,
+    private cs: CourseService,
+  ) { }
 
   getInstructors(): Observable<Instructor[]> {
     return this.db.collection('instructors', ref => ref.orderBy('name'))
@@ -24,7 +29,18 @@ export class InstructorService {
   }
 
   deleteInstructor(instructorId: string) {
-    return this.db.collection('instructors').doc(instructorId).delete();
+    const p1 = this.db.collection('instructors').doc(instructorId).delete();
+
+    // Removing instructor from their courses.
+    const p2 = this.cs.getCourses(null, instructorId)
+      .pipe(first(val => val != null))
+      .toPromise()
+      .then((courses: Course[]) => {
+        return courses.map(course => {
+          return this.cs.removeCourseInstructor(instructorId, course);
+        });
+      });
+    return Promise.all([p1, p2]);
   }
 
   submitInstructor(instructor: Instructor) {

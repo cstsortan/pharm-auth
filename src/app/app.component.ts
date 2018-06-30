@@ -9,10 +9,9 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  // semesterCounts = ['Α', 'Β', 'Γ', 'Δ', 'Ε', 'ΣΤ', 'Ζ', 'Η', 'Θ', 'Ι'];
-  semesters: Observable<Semester[]>;
+  semesters$: Observable<Semester[]>;
 
   constructor(private data: DataService) {
-    this.semesters = data.getSemesters();
+    this.semesters$ = data.getSemesters();
   }
 }

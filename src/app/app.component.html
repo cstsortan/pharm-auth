@@ -15,7 +15,7 @@
             Μαθήματα
           </a>
           <div class="dropdown-menu" aria-labelledby="first-yr">
-            <a *ngFor="let sem of (semesters | async)" class="dropdown-item" routerLinkActive="active" routerLink="/semester/{{sem.id}}">{{sem.name}} Εξάμηνο
+            <a *ngFor="let sem of semesters$|async" class="dropdown-item" routerLinkActive="active" routerLink="/semester/{{sem.id}}">{{sem.name}} Εξάμηνο
               <span class="badge badge-info">{{sem.courses}}</span>
             </a>
           </div>

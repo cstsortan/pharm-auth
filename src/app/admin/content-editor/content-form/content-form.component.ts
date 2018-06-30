@@ -89,6 +89,7 @@ export class ContentFormComponent implements OnInit {
     this.currentFilePercentage = null;
     this.currentFileUrl = null;
     this.currentContent.type = 'other';
+    this.isUploaded = false;
   }
 
   closeModal() {
