@@ -4,6 +4,8 @@ import {HomeComponent} from 'src/app/home/home.component';
 import { SemesterComponent } from 'src/app/semester/semester.component';
 import { AdminComponent } from './admin/admin.component';
 import { CoursePageComponent } from './course-page/course-page.component';
+import { UsefulLinksPageComponent } from './useful-links-page/useful-links-page.component';
+import { InstructorPageComponent } from './instructor-page/instructor-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'course/:id',
     component: CoursePageComponent,
+  },
+  {
+    path: 'useful-links',
+    component: UsefulLinksPageComponent,
+  },
+  {
+    path: 'instructor/:id',
+    component: InstructorPageComponent,
   }
 ];
 

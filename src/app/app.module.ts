@@ -29,6 +29,13 @@ import { ContentService } from './services/content.service';
 import { ContentListComponent } from './admin/content-editor/content-list/content-list.component';
 import { ContentListItemComponent } from './admin/content-editor/content-list-item/content-list-item.component';
 import { CoursePageComponent } from './course-page/course-page.component';
+import { UsefulLinksPageComponent } from './useful-links-page/useful-links-page.component';
+import { InstructorPageComponent } from './instructor-page/instructor-page.component';
+import { ContentCardComponent } from './content-card/content-card.component';
+import { UserFacingContentFormComponent } from './user-facing-content-form/user-facing-content-form.component';
+import { UserContentDashboardComponent } from 'src/app/admin/user-content-dashboard/user-content-dashboard.component';
+import { UserContentItemComponent } from './admin/user-content-dashboard/user-content-item/user-content-item.component';
+import { ContentTypePipe } from './pipes/content-type.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +54,14 @@ import { CoursePageComponent } from './course-page/course-page.component';
     UploadPercentPipe,
     ContentListComponent,
     ContentListItemComponent,
-    CoursePageComponent
+    CoursePageComponent,
+    UsefulLinksPageComponent,
+    InstructorPageComponent,
+    ContentCardComponent,
+    UserFacingContentFormComponent,
+    UserContentDashboardComponent,
+    UserContentItemComponent,
+    ContentTypePipe
   ],
   imports: [
     BrowserModule,
@@ -68,6 +82,7 @@ import { CoursePageComponent } from './course-page/course-page.component';
   bootstrap: [AppComponent],
   entryComponents: [
     ContentFormComponent,
+    UserFacingContentFormComponent,
   ]
 })
 export class AppModule { }

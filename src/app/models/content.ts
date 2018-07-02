@@ -7,4 +7,5 @@ export interface Content {
     timestamp?: number;
     otherLink: string;
     type: string;
+    isPublished?: boolean;
 }

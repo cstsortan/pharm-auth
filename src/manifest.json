@@ -1,7 +1,7 @@
 {
-  "name": "night-app",
-  "short_name": "night-app",
-  "theme_color": "#1976d2",
+  "name": "ioanpart",
+  "short_name": "ioanpart",
+  "theme_color": "#2C2C2C",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

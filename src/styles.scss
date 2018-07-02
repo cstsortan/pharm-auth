@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// $theme-colors: (
+//   "primary": #0074d9,
+//   "danger": #563D7C,
+//   "info": #C8DFFF,
+// //   "dark":#6E6E6E
+// );
+
+// // Generate alert modifier classes
+// @each $color, $value in $theme-colors {
+//     .alert-#{$color} {
+//         @include alert-variant(theme-color-level($color, -10), theme-color-level($color, -9), theme-color-level($color, 6));
+//     }
+// }
+  
+// // Generate `.bg-*` color utilities
+// @each $color, $value in $theme-colors {
+//     @include bg-variant('.bg-#{$color}', $value);
+// }
+
+// @each $color, $value in $theme-colors {
+//     @include bg-variant('btn-#{$color}', $value);
+// }

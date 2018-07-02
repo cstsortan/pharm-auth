@@ -28,6 +28,18 @@ export class InstructorService {
       }));
   }
 
+  getInstructor(id: string): Observable<Instructor> {
+    return this.db.collection('instructors')
+    .doc(id)
+    .snapshotChanges()
+    .pipe(map(snap => {
+      return {
+        ...snap.payload.data(),
+        id: id,
+      } as Instructor;
+    }));
+  }
+
   deleteInstructor(instructorId: string) {
     const p1 = this.db.collection('instructors').doc(instructorId).delete();
 

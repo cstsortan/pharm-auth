@@ -20,4 +20,8 @@ export class ContentListComponent implements OnInit {
     this.content$ = this.content.getContent();
   }
 
+  trackByFn(index: number, item: Content): string {
+    return item.id;
+  }
+
 }

@@ -22,6 +22,8 @@ export class CoursePageComponent implements OnInit {
 
   questions$: Observable<Content[]>;
 
+  courseMaterial$: Observable<Content[]>;
+
   constructor(
     private route: ActivatedRoute,
     private courseService: CourseService,
@@ -46,6 +48,13 @@ export class CoursePageComponent implements OnInit {
     .pipe(
       switchMap(params => {
         return this.contentService.getCourseContent(params.get('id'), 'questions');
+      })
+    );
+
+    this.courseMaterial$ = this.route.paramMap
+    .pipe(
+      switchMap(params => {
+        return this.contentService.getContentsOfType('material', params.get('id'));
       })
     );
   }
